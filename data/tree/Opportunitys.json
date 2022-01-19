@@ -1,0 +1,18 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Opportunity",
+                "referenceId": "OpportunityRef1"
+            },
+            "CloseDate": "2022-01-19",
+            "Account": {
+                "attributes": {
+                    "type": "Account",
+                    "url": "/services/data/v53.0/sobjects/Account/0015j000004oWC7AAM"
+                },
+                "Industry": null
+            }
+        }
+    ]
+}

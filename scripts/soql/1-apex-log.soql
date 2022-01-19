@@ -1,0 +1,2 @@
+// Salesforce has debug log limits (1,000MB of debug logs per org) 
+SELECT SUM(LogLength) FROM ApexLog

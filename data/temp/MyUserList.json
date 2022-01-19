@@ -1,0 +1,16 @@
+{
+  "status": 0,
+  "result": [
+    {
+      "defaultMarker": "(A)",
+      "alias": "twcompsa",
+      "username": "wilson@tw.com.psa",
+      "profileName": "System Administrator",
+      "orgId": "00D5j0000018Ln8EAE",
+      "accessToken": "af1b84814865103883a5fd4d9447dda0e8d4615f982c7dca74a79455631cc2c3c5599f59e0eb6a21ad6671155ba6975f1c562323e93e8440065d960fc20fbd26d33c416d76561028b18e4f49a89f6cf58f2fc7378cc6bb55bb6d5ea8e3abe32c5a2cdc0532f8d6eeb42618df9a8cd145889347d27f34:a5764433a386df7fd0ad1b7268fcdadf",
+      "instanceUrl": "https://twcompsa-dev-ed.my.salesforce.com",
+      "loginUrl": "https://login.salesforce.com",
+      "userId": "0055j000000HKihAAG"
+    }
+  ]
+}
