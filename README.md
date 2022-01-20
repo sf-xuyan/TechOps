@@ -1,18 +1,63 @@
-# Salesforce DX Project: Next Steps
+# [git-crypt](https://buddy.works/guides/git-crypt)
+## Git-crypt and GPG installation
+```bash
+brew install git-crypt
+brew install gpg
+```
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+## Repository and git-crypt initialization
+```bash
+git init
+git-crypt init
+```
 
-## How Do You Plan to Deploy Your Changes?
+## Defining files to encrypt
+1. put your credentials into one folder, i.e secretfile
+2. create a .gitattributes file
+```bash
+mkdir .gitattributes
+```
+3. add the following text to the body of .gitattributes file
+<pre>
+.gitattributes !filter !diff
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+secretfile/** filter=git-crypt diff=git-crypt
+</pre>
 
-## Configure Your Salesforce DX Project
+## Testing encryption
+```bash
+git-crypt status -e
+```
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+## Commits, pushes & encryption
+```bash
+git add .
+git commit -m 'init commit'
+git remote add origin REMOTE_URL
+git push master
+```
 
-## Read All About It
+## Working in team with git-crypt
+you can do one of two things:
+1. Share the encryption key with them (symmetric key).
+2. Add their GPG key to authorized keys.
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+### Symmetric key
+```bash
+git-crypt export-key path/where/key/should/be/saved
+git-crypt unlock path/to/key
+```
+
+## GPG key
+```bash
+gpg --gen-key
+gpg --list-keys
+gpg --export --armor $KEY_ID
+gpg --import /path/to/file
+git-crypt add-gpg-user --trusted $EMAIL
+git-crypt unlock
+```
+
+## Git-crypt in CI/CD process
+The decryption is performed with symmetric key uploaded to the `Git-crypt unlock` action.
+Once all tasks are performed, you can secure the files once again with `Git-crypt lock`.
