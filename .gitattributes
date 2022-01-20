@@ -1,1 +1,5 @@
+# A good practice is to add a line to prevent encrypting the .gitattributes file itself
+.gitattributes !filter !diff
+
+# ref: https://buddy.works/guides/git-crypt
 secretfile/** filter=git-crypt diff=git-crypt
